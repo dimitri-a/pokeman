@@ -12,8 +12,6 @@ export default class List extends Component {
             currentPageNr: 0,
             filter: ''
         }
-
-        //this.selectData();
     }
 
     componentDidMount() {
@@ -26,10 +24,8 @@ export default class List extends Component {
         });
     }
 
-
     selectData() {
         let result;
-
 
         if (this.state.filter !== '') {
             console.log('this.state.data=', this.state.data);
@@ -40,42 +36,37 @@ export default class List extends Component {
             result = this.state.data;
         }
 
-        //todo remove
-        debugger;
-        let currentPage = result.slice(this.state.currentPageNr*20, this.state.currentPageNr*20+20);
-
-        console.log('currentPage=', currentPage);
-
+        let currentPage = result.slice(this.state.currentPageNr * 20, this.state.currentPageNr * 20 + 20);
         return currentPage;
     }
 
 
     setFilter(filter) {
-        this.setState({filter: filter},function(){
+        this.setState({filter: filter}, function () {
             this.selectData();
         });
     }
 
-    prev()
-    {
+    prev() {
         console.log('prev');
-        this.setState({currentPageNr:this.state.currentPageNr-1});
-        //this.selectData();
+        this.setState({currentPageNr: this.state.currentPageNr - 1});
     }
 
-    next()
-    {
-        this.setState({currentPageNr:this.state.currentPageNr +1});
-        //this.selectData();
+    next() {
+        this.setState({currentPageNr: this.state.currentPageNr + 1});
     }
 
     render() {
 
-        return (<div>
+        return (
+            <div className="container dtop">
                 <button className="btn btn-default" onClick={() => this.prev()}>prev</button>
                 <button className="btn btn-default" onClick={() => this.next()}>next</button>
-                <input type="text" placeholder="search your pokemon" onChange={e => this.setFilter(e.target.value)}/>
 
+                <div className="col-lg-12 col-md-12 col-xs-12">
+                    <input type="text" placeholder="search your pokemon"
+                           onChange={e => this.setFilter(e.target.value)}/>
+                </div>
                 <Pokemon data={this.selectData()}/>
             </div>
         );

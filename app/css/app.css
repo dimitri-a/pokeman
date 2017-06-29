@@ -2,3 +2,31 @@ body
 {
     cursor: pointer;
 }
+
+.dtop
+{
+    text-align: center;
+}
+
+.big-box,
+.mini-box {
+    text-align: center;
+    margin: 2px;
+
+}
+.big-box {
+    height: 65px
+}
+.mini-box {
+    height: 30px
+}
+
+.filterbutton
+{
+    margin-left:10px;
+}
+
+.middle
+{
+    text-align: center;
+}
