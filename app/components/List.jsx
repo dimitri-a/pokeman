@@ -28,9 +28,7 @@ export default class List extends Component {
         let result;
 
         if (this.state.filter !== '') {
-            console.log('this.state.data=', this.state.data);
             result = this.state.data.filter(item => item.name.includes(this.state.filter));
-            console.log('filter=');
         }
         else {
             result = this.state.data;
@@ -48,7 +46,6 @@ export default class List extends Component {
     }
 
     prev() {
-        console.log('prev');
         this.setState({currentPageNr: this.state.currentPageNr - 1});
     }
 
@@ -57,19 +54,17 @@ export default class List extends Component {
     }
 
     render() {
-
         return (
             <div className="container dtop">
                 <button className="btn btn-default" onClick={() => this.prev()}>prev</button>
                 <button className="btn btn-default" onClick={() => this.next()}>next</button>
 
                 <div className="col-lg-12 col-md-12 col-xs-12">
-                    <input type="text" placeholder="search your pokemon"
+                    <input className="middle form-control" type="text" placeholder="search your pokemon"
                            onChange={e => this.setFilter(e.target.value)}/>
                 </div>
                 <Pokemon data={this.selectData()}/>
             </div>
         );
     }
-
 }

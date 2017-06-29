@@ -21,7 +21,7 @@ export default class Pokemon extends Component {
         (
             (poke) =>
                 (
-                    <div>
+                    <div key={poke.name}>
                         <div key={poke.name} className="col-lg-3 col-sm-6 hidden-xs">
                             <img src={this.getImageFilename(poke)} alt=""/>
                             <p>#{this.getId(poke)}</p>
