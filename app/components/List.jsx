@@ -7,21 +7,29 @@ export default class List extends Component {
         super(props);
 
         this.state = {
-            allData: []
+            data: []
         }
+    }
 
+    componentDidMount(){
         this.getPokemons();
     }
 
     getPokemons(){
+        axios.get("http://pokeapi.co/api/v2/pokemon/?limit=151").then(response => {
+            console.log(response.data.results);
+            this.setState({ data: response.data.results });
+        });
+    }
 
-        axios.get('http://pokeapi.co/api/v2/pokemon/?limit=151')
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+
+    selectData(search){
+        //todo remove
+        debugger;
+        console.log('this.state.data=',this.state.data);
+        let filter = this.state.data.filter(item => item.name.includes(search));
+        console.log('filter=',filter);
+        return filter;
     }
 
 
@@ -29,7 +37,9 @@ export default class List extends Component {
     render() {
      
         return (<div>
-          hi
+                <input type="text" placeholder="search your pokemon" onChange={e => this.selectData(e.target.value)}/>
+                
+                
             </div>
         );
     }
