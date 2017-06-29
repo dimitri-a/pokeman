@@ -29,7 +29,12 @@ export default class List extends Component {
         console.log('this.state.data=',this.state.data);
         let filter = this.state.data.filter(item => item.name.includes(search));
         console.log('filter=',filter);
-        return filter;
+
+        let currentPage = filter.slice(0,20);
+
+        console.log('currentPage=',currentPage);
+
+        return currentPage;
     }
 
 
