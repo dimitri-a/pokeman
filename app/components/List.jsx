@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Pokemon from './Pokemon.jsx';
 
 export default class List extends Component {
 
@@ -7,44 +8,74 @@ export default class List extends Component {
         super(props);
 
         this.state = {
-            data: []
+            data: [],
+            currentPageNr: 0,
+            filter: ''
         }
+
+        //this.selectData();
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getPokemons();
     }
 
-    getPokemons(){
+    getPokemons() {
         axios.get("http://pokeapi.co/api/v2/pokemon/?limit=151").then(response => {
-            console.log(response.data.results);
-            this.setState({ data: response.data.results });
+            this.setState({data: response.data.results});
+
         });
     }
 
 
-    selectData(search){
+    selectData() {
+        let result;
+
         //todo remove
-        debugger;
-        console.log('this.state.data=',this.state.data);
-        let filter = this.state.data.filter(item => item.name.includes(search));
-        console.log('filter=',filter);
+       // debugger;
+        if (this.state.filter !== '') {
+            console.log('this.state.data=', this.state.data);
+            result = this.state.data.filter(item => item.name.includes(this.state.filter));
+            console.log('filter=');
+        }
+        else {
+            result = this.state.data;
+        }
 
-        let currentPage = filter.slice(0,20);
+        let currentPage = result.slice(this.state.currentPageNr, 20);
 
-        console.log('currentPage=',currentPage);
+        console.log('currentPage=', currentPage);
 
         return currentPage;
     }
 
 
+    setFilter(filter) {
+        this.setState({filter: filter},function(){
+            this.selectData();
+        });
+    }
+
+    prev()
+    {
+        console.log('prev');
+        this.setState({currentPageNr:this.state.currentPageNr-1});
+    }
+
+    next()
+    {
+        this.setState({currentPageNr:this.state.currentPageNr +1});
+    }
 
     render() {
-     
+
         return (<div>
-                <input type="text" placeholder="search your pokemon" onChange={e => this.selectData(e.target.value)}/>
-                
-                
+                <button className="btn btn-default" onClick={() => this.prev()}>prev</button>
+                <button className="btn btn-default" onClick={() => this.next()}>next</button>
+                <input type="text" placeholder="search your pokemon" onChange={e => this.setFilter(e.target.value)}/>
+
+
+                <Pokemon data={this.state.data}/>
             </div>
         );
     }
