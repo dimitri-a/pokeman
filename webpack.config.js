@@ -1,10 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
 
-
-//const ExtractTextPlugin = require('extract-text-webpack-plugin')
-//const extractCSS = new ExtractTextPlugin('[name].bundle.css')
-
 const config = {
     context: path.resolve(__dirname, 'app'),
     entry: {
@@ -34,13 +30,7 @@ const config = {
                 path.resolve(__dirname, "app")
             ],
 
-            loader: "babel-loader",
-            // the loader which should be applied, it'll be resolved relative to the context
-            // -loader suffix is no longer optional in webpack2 for clarity reasons
-            // see webpack 1 upgrade guide
-
-
-            // options for the loader
+            loader: "babel-loader"
 
         }]
     },

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 export default class Pokemon extends Component {
 
-
     getId(pk) {
         const ar = pk.url.split("/");
         let nr = ar[ar.length - 2];
@@ -26,7 +25,6 @@ export default class Pokemon extends Component {
                             <img src={this.getImageFilename(poke)} alt=""/>
                             <p>#{this.getId(poke)}</p>
                             <p> {poke.name}</p>
-
                         </div>
 
                         <div className="row hidden-lg hidden-sm hidden-md">
@@ -50,5 +48,4 @@ export default class Pokemon extends Component {
             </div>
         );
     }
-
 }
