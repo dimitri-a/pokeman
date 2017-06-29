@@ -30,8 +30,7 @@ export default class List extends Component {
     selectData() {
         let result;
 
-        //todo remove
-        debugger;
+
         if (this.state.filter !== '') {
             console.log('this.state.data=', this.state.data);
             result = this.state.data.filter(item => item.name.includes(this.state.filter));
@@ -41,7 +40,9 @@ export default class List extends Component {
             result = this.state.data;
         }
 
-        let currentPage = result.slice(this.state.currentPageNr, 20);
+        //todo remove
+        debugger;
+        let currentPage = result.slice(this.state.currentPageNr*20, this.state.currentPageNr*20+20);
 
         console.log('currentPage=', currentPage);
 
