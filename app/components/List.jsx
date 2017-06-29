@@ -23,7 +23,6 @@ export default class List extends Component {
     getPokemons() {
         axios.get("http://pokeapi.co/api/v2/pokemon/?limit=151").then(response => {
             this.setState({data: response.data.results});
-
         });
     }
 
@@ -32,7 +31,7 @@ export default class List extends Component {
         let result;
 
         //todo remove
-       // debugger;
+        debugger;
         if (this.state.filter !== '') {
             console.log('this.state.data=', this.state.data);
             result = this.state.data.filter(item => item.name.includes(this.state.filter));
@@ -60,11 +59,13 @@ export default class List extends Component {
     {
         console.log('prev');
         this.setState({currentPageNr:this.state.currentPageNr-1});
+        //this.selectData();
     }
 
     next()
     {
         this.setState({currentPageNr:this.state.currentPageNr +1});
+        //this.selectData();
     }
 
     render() {
@@ -74,8 +75,7 @@ export default class List extends Component {
                 <button className="btn btn-default" onClick={() => this.next()}>next</button>
                 <input type="text" placeholder="search your pokemon" onChange={e => this.setFilter(e.target.value)}/>
 
-
-                <Pokemon data={this.state.data}/>
+                <Pokemon data={this.selectData()}/>
             </div>
         );
     }
