@@ -34,8 +34,6 @@ export default class List extends Component {
             result = this.state.data;
         }
 
-        //todo remove
-        debugger;
         let currentPage = result.slice(this.state.currentPageNr * 20, this.state.currentPageNr * 20 + 20);
         return currentPage;
     }
