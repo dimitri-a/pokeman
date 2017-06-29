@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/dimitri-a/reactjs_dutchboiler#readme",
   "dependencies": {
+    "axios": "^0.16.2",
     "babel-loader": "^7.0.0",
     "css-loader": "^0.28.4",
     "react": "^15.5.4",

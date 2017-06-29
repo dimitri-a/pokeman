@@ -4,10 +4,11 @@ if (module.hot) {
 
 import ReactDOM from 'react-dom';
 import React from 'react';
+import List from './components/List.jsx';
 
 const App = () => (
     <div>
-        Pokemon
+        <List/>
     </div>
 
 );
