@@ -56,8 +56,8 @@ export default class List extends Component {
     render() {
         return (
             <div className="container dtop">
-                <button className="btn btn-default" onClick={() => this.prev()}>prev</button>
-                <button className="btn btn-default" onClick={() => this.next()}>next</button>
+                <button disabled={this.state.currentPageNr < 1 && this.state.filter ===''} className="btn btn-default" onClick={() => this.prev()}>prev</button>
+                <button  disabled={this.state.currentPageNr > 6 && this.state.filter ===''}  className="btn btn-default" onClick={() => this.next()}>next</button>
 
                 <div className="col-lg-12 col-md-12 col-xs-12">
                     <input className="middle form-control" type="text" placeholder="search your pokemon"
